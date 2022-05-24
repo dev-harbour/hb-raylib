@@ -37,7 +37,7 @@ PROCEDURE Main()
 
          DrawText( TextFormatSI( "GP1: %s", GetGamepadName( 0 ) ), 10, 10, 10, BLACK )
 
-         IF IsGamepadName( 0, XBOX360_NAME_ID ) .OR. IsGamepadName( 0, XBOX360_LEGACY_NAME_ID )
+         IF TextIsEqual (GetGamepadName( 0 ), XBOX360_NAME_ID ) .OR. TextIsEqual (GetGamepadName( 0 ), XBOX360_LEGACY_NAME_ID )
 
             DrawTexture( aTexXboxPad, 0, 0, DARKGRAY )
 
@@ -108,7 +108,7 @@ PROCEDURE Main()
             DrawRectangle( 170, 30, 15, 1 + Int( GetGamepadAxisMovement( 0, GAMEPAD_AXIS_LEFT_TRIGGER ) / 2 * 70 ), RED )
             DrawRectangle( 604, 30, 15, 1 + Int( GetGamepadAxisMovement( 0, GAMEPAD_AXIS_RIGHT_TRIGGER ) / 2 * 70 ), RED )
 
-         ELSEIF IsGamepadName( 0, PS3_NAME_ID )
+         ELSEIF TextIsEqual (GetGamepadName( 0 ), PS3_NAME_ID )
 
             DrawTexture( aTexPs3Pad, 0, 0, DARKGRAY )
 

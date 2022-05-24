@@ -10,9 +10,8 @@ PROCEDURE Main()
    LOCAL aRadialGradient := GenImageGradientRadial( nScreenWidth, nScreenHeight, 0.0, WHITE, BLACK )
    LOCAL aChecked := GenImageChecked( nScreenWidth, nScreenHeight, 32, 32, RED, BLUE )
    LOCAL aWhiteNoise := GenImageWhiteNoise( nScreenWidth, nScreenHeight, 0.5 )
-   LOCAL aPerlinNoise := GenImagePerlinNoise( nScreenWidth, nScreenHeight, 50, 50, 4.0 )
    LOCAL aCellular  := GenImageCellular( nScreenWidth, nScreenHeight, 32 )
-   LOCAL aTextures[ 7 ]
+   LOCAL aTextures[ 6 ]
    LOCAL nCurrentTexture := 1
    LOCAL i
 
@@ -23,15 +22,13 @@ PROCEDURE Main()
    aTextures[ 3 ] := LoadTextureFromImage( aRadialGradient )
    aTextures[ 4 ] := LoadTextureFromImage( aChecked )
    aTextures[ 5 ] := LoadTextureFromImage( aWhiteNoise )
-   aTextures[ 6 ] := LoadTextureFromImage( aPerlinNoise )
-   aTextures[ 7 ] := LoadTextureFromImage( aCellular )
+   aTextures[ 6 ] := LoadTextureFromImage( aCellular )
 
    UnloadImage( aVerticalGradient )
    UnloadImage( aHorizontalGradient )
    UnloadImage( aRadialGradient )
    UnloadImage( aChecked )
    UnloadImage( aWhiteNoise )
-   UnloadImage( aPerlinNoise )
    UnloadImage( aCellular )
 
    SetTargetFPS( 60 )
@@ -64,8 +61,6 @@ PROCEDURE Main()
       CASE nCurrentTexture = 5
          DrawText( "WHITE NOISE", 640, 10, 20, RED )
       CASE nCurrentTexture = 6
-         DrawText( "PERLIN NOISE", 630, 10, 20, RAYWHITE )
-      CASE nCurrentTexture = 7
          DrawText( "CELLULAR", 670, 10, 20, RAYWHITE )
       ENDCASE
       EndDrawing()

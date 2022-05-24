@@ -11,7 +11,7 @@
 
 ### Install raylib
 
-Download [raylib](https://github.com/raysan5/raylib/releases/tag/3.7.0) binary archive from this page and unpack in the directory:
+Download [raylib](https://github.com/raysan5/raylib/releases/tag/4.0.0) binary archive from this page and unpack in the directory:
 
 ```
 c:\raylib\bin *.dll
@@ -31,7 +31,7 @@ set PATH=c:\raylib\bin;%path%
 Clone an existing repository only fetching the 10 most recent commits on the default branch (useful to save time):
 
 ```
-git clone --depth 10 https://github.com/MarcosLeonardoMendezGerencir/hb-raylib
+git clone --depth 10 https://github.com/dev-harbour/hb-raylib.git
 cd hb-raylib
 hb-raylib>hbmk2 hbraylib.hbp
 ```

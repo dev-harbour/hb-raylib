@@ -16,7 +16,7 @@ PROCEDURE Main()
    aTexture := LoadTextureFromImage( aImage )
    UnloadImage( aImage )
 
-   aImage := GetTextureData( aTexture )
+   aImage := LoadImageFromTexture( aTexture )
    UnloadTexture( aTexture )
 
    aTexture := LoadTextureFromImage( aImage )

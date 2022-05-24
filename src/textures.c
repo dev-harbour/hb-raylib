@@ -118,6 +118,39 @@ HB_FUNC( LOADIMAGEFROMMEMORY )
    }
 }
 
+// Image LoadImageFromTexture(Texture2D texture); 
+HB_FUNC( LOADIMAGEFROMTEXTURE )
+{
+     PHB_ITEM pItem;
+
+   if( ( pItem = hb_param( 1, HB_IT_ARRAY ) ) != NULL && hb_arrayLen( pItem ) == 5 )
+   {
+      Texture2D texture;
+
+      texture.id      = ( unsigned int ) hb_arrayGetNI( pItem, 1 );
+      texture.width   = hb_arrayGetNI( pItem, 2 );
+      texture.height  = hb_arrayGetNI( pItem, 3 );
+      texture.mipmaps = hb_arrayGetNI( pItem, 4 );
+      texture.format  = hb_arrayGetNI( pItem, 5 );
+
+      Image image = LoadImageFromTexture( texture );
+
+      PHB_ITEM info = hb_itemArrayNew( 5 );
+
+      hb_arraySetPtr( info, 1, image.data );
+      hb_arraySetNI( info, 2, image.width );
+      hb_arraySetNI( info, 3, image.height );
+      hb_arraySetNI( info, 4, image.mipmaps );
+      hb_arraySetNI( info, 5, image.format );
+
+      hb_itemReturnRelease( info );
+   }
+   else
+   {
+      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+   }
+}
+
 // void UnloadImage(Image image);                                                                     // Unload image from CPU memory (RAM)
 HB_FUNC( UNLOADIMAGE )
 {
@@ -402,33 +435,6 @@ HB_FUNC( GENIMAGEWHITENOISE )
        hb_param( 3, HB_IT_NUMERIC ) != NULL )
    {
       Image image = GenImageWhiteNoise( hb_parni( 1 ), hb_parni( 2 ), ( float ) hb_parnd( 3 ) );
-
-      PHB_ITEM info = hb_itemArrayNew( 5 );
-
-      hb_arraySetPtr( info, 1, image.data );
-      hb_arraySetNI( info, 2, image.width );
-      hb_arraySetNI( info, 3, image.height );
-      hb_arraySetNI( info, 4, image.mipmaps );
-      hb_arraySetNI( info, 5, image.format );
-
-      hb_itemReturnRelease( info );
-   }
-   else
-   {
-      hb_errRT_BASE( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-   }
-}
-
-// Image GenImagePerlinNoise(int width, int height, int offsetX, int offsetY, float scale);           // Generate image: perlin noise
-HB_FUNC( GENIMAGEPERLINNOISE )
-{
-   if( hb_param( 1, HB_IT_INTEGER ) != NULL &&
-       hb_param( 2, HB_IT_INTEGER ) != NULL &&
-       hb_param( 3, HB_IT_INTEGER ) != NULL &&
-       hb_param( 4, HB_IT_INTEGER ) != NULL &&
-       hb_param( 5, HB_IT_NUMERIC ) != NULL )
-   {
-      Image image = GenImagePerlinNoise( hb_parni( 1 ), hb_parni( 2 ), hb_parni( 3 ), hb_parni( 4 ), ( float ) hb_parnd( 5 ) );
 
       PHB_ITEM info = hb_itemArrayNew( 5 );
 

@@ -1588,20 +1588,6 @@ HB_FUNC( ISGAMEPADAVAILABLE )
    }
 }
 
-// bool IsGamepadName(int gamepad, const char *name);      // Check gamepad name (if available)
-HB_FUNC( ISGAMEPADNAME )
-{
-   if( hb_param( 1, HB_IT_INTEGER ) != NULL &&
-       hb_param( 2, HB_IT_STRING  ) != NULL )
-   {
-      hb_retl( IsGamepadName( hb_parni( 1 ), hb_parc( 2 ) ) );
-   }
-   else
-   {
-      hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-   }
-}
-
 // const char *GetGamepadName(int gamepad);                // Return gamepad internal name id
 HB_FUNC( GETGAMEPADNAME )
 {
